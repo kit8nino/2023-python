@@ -26,6 +26,7 @@ def main():
     #                                       #
     #   Выводим средний балл аттестата :)   #
     #                                       #
+    print("Ex. 1")
     sr = 0
     for i in attestat:
         sr += attestat[i]
@@ -36,6 +37,7 @@ def main():
     #   Выводим уникальные имена            #
     #   родственников :)                    #
     #                                       #
+    print("Ex. 2")
     r2 = rodstvenniki + [dannyje[0][0:5]]
     endR = []
     for i in r2:
@@ -51,6 +53,7 @@ def main():
     #   Общая длина всех                    #
     #   названий предметов                  #
     #                                       #
+    print("Ex. 3")
     summa = 0
     for i in attestat:
         summa += len(i)
@@ -60,6 +63,7 @@ def main():
     #   Уникальные буквы                    #
     #   в названиях предметов               #
     #                                       #
+    print("Ex. 4")
     b2 = ""
     for i in attestat:
         b2 += i
@@ -77,6 +81,7 @@ def main():
     #   Имя пушистой кивы                   #
     #   в бинароном виде                    #
     #                                       #
+    print("Ex. 5")
     bin = []
     dec = []
     for i in imjaKivy:
@@ -96,6 +101,7 @@ def main():
     #                                       #
     #   Сортировка списка родственников     #
     #                                       #
+    print("Ex. 6")
     r2 = rodstvenniki
     r2.sort(reverse=True)
     print(r2)
@@ -103,6 +109,7 @@ def main():
     #                                       #
     #   Количество дней от даты рождения    #
     #                                       #
+    print("Ex. 7")
     now = datetime.datetime.today()
     MD = datetime.datetime(dannyje[3], dannyje[2], dannyje[1])
     print((now - MD).days, "дней")
@@ -110,6 +117,7 @@ def main():
     #                                       #
     #   FIFO очередь                        #
     #                                       #
+    print("Ex. 8")
     FIFO = []
     while (True):
         a = input()
@@ -122,6 +130,7 @@ def main():
     #                                       #
     #   Ацтеки                              #
     #                                       #
+    print("Ex. 9")
     print(r2)
     while (True):
         a = input()
