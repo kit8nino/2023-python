@@ -1,6 +1,6 @@
 <div id="header" align="center">
   <div id="main">
-<h1> <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original-wordmark.svg"  title="Python" alt="Python" width="60" height="60"/> Оценки и список группы <sup> made by Erow </sup> </h1>
+<h1> <img src="https://github.com/devicons/devicon/blob/master/icons/python/python-original-wordmark.svg"  title="Python" alt="Python" width="60" height="60"/> Оценки и список группы <sup> made by <a href="https://github.com/Lyric-Meow/">Milly</a> </sup> </h1>
   </div>
   
 | **№**	| **Фамилия**  	| **Лаба 1** 	| **Лаба 2** 	| **Лаба 3** 	| **Лаба 4** 	| **Лаба 5** 	| **Лаба 6** 	| **Лаба 7** 	| **Лаба 8** 	| **Лаба 9** 	| **Лаба 10** |
