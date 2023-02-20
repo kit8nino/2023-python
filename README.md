@@ -5,20 +5,17 @@
 Библиотеки: numpy, matplotlib, tkinter
 Редактор любой. Из неплохих: IDLE (родной, идёт вместе с установщиком), Visual Studio Code, notepad++, PyCharm, vim (для любителей сначала страдать, потом наслаждаться)
 
-Работа с блокнотами онлайн, с возможностью подключение удалённых мощностей гугла (GPU, TPU): https://colab.research.google.com/
-
-Таблица, где я буду отмечать сданные работы: 
-
+Работа с блокнотами онлайн, с возможностью подключение удалённых мощностей гугла (GPU, TPU):
+<a href="https://colab.research.google.com/">
+<img src="https://img.shields.io/badge/Google%20Colab-2275be?logo=google&logoColor=fcec06" height="25" alt="Google colab Badge"/>
+</a><br>
 Презентация (будет обновляться в течение семестра): 
 <a href="https://docs.google.com/presentation/d/1CqyrZYSh15dsVWt57eu14UDtm2-GFpSF5TD2_tVLaCc/edit?usp=sharing">
-<img src="https://img.shields.io/badge/Google%20docs-2275be?logo=google&logoColor=fcec06" height="25" alt="Google docs Badge"/>
+<img src="https://img.shields.io/badge/Google%20docs-2275be?logo=google&logoColor=fcec06" height="25" alt="Google Docs Badge"/>
 </a><br>
 Хорошая книга по python, очень простым языком и на понятных примерах: 
 <a href="https://wombat.org.ua/AByteOfPython/AByteofPythonRussian-2.02.pdf">
 <img src="https://img.shields.io/badge/Wombat-2275be" height="25" alt="Book Badge"/>
-</a><br>
-<a href="https://discord.gg/MzPkCYf4Dh">
-<img src="https://img.shields.io/badge/Discord-2275be?logo=discord&logoColor=fcec06" height="25" alt="Discord Badge"/>
 </a><br>
 Сервер в Дискорд, где буду дублировать: 
 <a href="https://discord.gg/MzPkCYf4Dh">
