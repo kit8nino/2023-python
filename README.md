@@ -16,7 +16,7 @@
 Сервер в Дискорд, где буду дублировать: 
 <a href="https://discord.gg/MzPkCYf4Dh">
 <img src="https://img.shields.io/badge/Discord-2275be?logo=discord&logoColor=fcec06" height="25" alt="Discord Badge"/>
-</a>
+</a><br>
 Мой контакт:
 <a href="mailto:nsmorozov@rf.unn.ru">
   <img src="https://img.shields.io/badge/E%E2%80%93mail-2275be?logo=gmail&logoColor=fcec06" height="25" alt="E–mail Badge"/>
