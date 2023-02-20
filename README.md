@@ -1,4 +1,4 @@
-# 2023-python
+<h1> 2023-python <sup> co-made by <a href="https://github.com/Lyric-Meow/">Milly</a> </sup> </h1>
 Лабораторные по курсу "Язык программирования Python", группы ИС-33, ИС-34
 
 ## Старт:
