@@ -13,9 +13,14 @@
 
 Хорошая книга по python, очень простым языком и на понятных примерах: https://wombat.org.ua/AByteOfPython/AByteofPythonRussian-2.02.pdf
 
-Сервер в Дискорд, где буду дублировать: https://discord.gg/MzPkCYf4Dh
-
-Мой контакт: nsmorozov@rf.unn.ru
+Сервер в Дискорд, где буду дублировать: 
+<a href="https://discord.gg/MzPkCYf4Dh">
+<img src="https://img.shields.io/badge/Discord-2275be?logo=discord&logoColor=fcec06" height="25" alt="Discord Badge"/>
+</a>
+Мой контакт:
+<a href="mailto:nsmorozov@rf.unn.ru">
+  <img src="https://img.shields.io/badge/E%E2%80%93mail-2275be?logo=gmail&logoColor=fcec06" height="25" alt="E–mail Badge"/>
+</a>
 
 В своей папке можете делать все что угодно, в чужие не залезать, в корневую тоже. Я буду ориентироваться на файлы, где в названии будет номер лабораторной.
 
