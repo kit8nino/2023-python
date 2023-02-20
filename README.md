@@ -15,7 +15,7 @@
 </a><br>
 Хорошая книга по python, очень простым языком и на понятных примерах: 
 <a href="https://wombat.org.ua/AByteOfPython/AByteofPythonRussian-2.02.pdf">
-<img src="https://img.shields.io/badge/Wombat-2275be" height="25" alt="Book Badge"/>
+<img src="https://img.shields.io/badge/Wombat-2275be?labelColor=fcec06" height="25" alt="Book Badge"/>
 </a><br>
 Сервер в Дискорд, где буду дублировать: 
 <a href="https://discord.gg/MzPkCYf4Dh">
