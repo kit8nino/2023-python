@@ -32,3 +32,29 @@ for i in v:
     print('Element ', i, ' is good')
 
 print(*v) # <- распакованный список, просто значения, разделенные пробелами
+
+def sum_3_4(x, three=3, four=4):
+    return x + three + four
+
+print(sum_3_4(5), sum_3_4(6, three=7), sum_3_4(7, four=2, three=1))
+
+fib_list = [1]
+
+
+def get_fibb(fib_index):
+    global N, v, fib_list
+    fib_one = 1
+    fib_two = 1
+    print('N is ', N)
+    for i in range(fib_index-1):
+        fib_one, fib_two = fib_two, fib_two + fib_one
+        yield fib_two
+
+
+fib_number = int(input('Enter index (fibbonacci): '))
+for e in get_fibb(fib_number):
+    print(e)
+
+while fib_number != -1:
+    fib_number = int(input('Enter index (fibbonacci): '))
+    print(f'Fib {fib_number} is {get_fibb(fib_number)}')
