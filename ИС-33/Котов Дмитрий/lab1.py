@@ -89,6 +89,30 @@ while (True):
     break
 print(r)
 
+slovar = {}
+for i in range(len(rodstvenniki)):
+        slovar[rodstvenniki[i]] = rodstvenniki[(i+1)%len(rodstvenniki)]
+print("Nomer 10", slovar)
+
+number = len("КотовДмитрийВладимирович") * (len(rodstvenniki[0])+len(rodstvenniki[1])+len(rodstvenniki[2])+len(rodstvenniki[3]))%4
+print("Nomer 11","Moi variant = ",number)
+
+def alikvotnayaposledovatelnost(t,firstt):
+    newt=0
+    if t==firstt:
+        print(t)
+    if t==1:
+        print(0)
+        return
+    else:
+        for i in range(1,t//2+1):
+            if t%i==0:
+                newt+=i
+        print(newt)
+        return alikvotnayaposledovatelnost(newt,firstt)
+    
+B=int(input("Введите число,аликвотная последовательность: "))
+alikvotnayaposledovatelnost(B,B)
 
 
 
