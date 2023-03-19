@@ -1,2 +1,2 @@
 <h1 align="center">Че надо?</a> 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Computer+science+student)](https://git.io/typing-svg)
+![Cotic](https://external-preview.redd.it/6CX4YSkJMNER2Y4_86T8pGtYCO7SAyUanQ8djPZqwlo.gif?format=mp4&v=enabled&s=3d775c70609fc894c458936a0346ec1795c81bb8)
