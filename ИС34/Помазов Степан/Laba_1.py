@@ -90,11 +90,12 @@ print('8) FIFO - очередь, введенная с клавиатуры (о�
 fifo_queue = []
 command = "stop"
 number = (10 + 9 ** 2 + 2004) % 21 + 1
+predmety = [elem for elem in attestat]
 while True:
     s = input()
     if s == command:
         for i in range(len(fifo_queue)):
-            print(fifo_queue.pop(),end=" ")
+            print(predmety[i])
         break
     fifo_queue.append(s)
 print('\n9) Введите индекс имени родственника, чтобы заменить на имя ацтекского правителя (от 0 до 15): ')
