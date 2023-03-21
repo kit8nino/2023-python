@@ -97,28 +97,25 @@ for i in range(len(r)):
         list10[r[i]] = r[(i+1)%len(r)] 
 print("№10", list10) 
  
-print("Задание №11 вариант: ") 
-number=len("ЦветковАндрейСергеевич")*(len(relatives[0])+len(relatives[1])+len(relatives[2])+len(relatives[3])+len(relatives[4]))%4 
-print(number) 
- 
-def alikvotposl(x, x1): 
-    nx=0 
-    if x==x1: 
-        print(x) 
-    if x==1: 
-        print(0) 
-        return 
-    else: 
-        for i in range(1, x//2+1): 
-            if x%i==0: 
-                nx+=i 
-        print(nx) 
-        return alikvotposl(nx, x1) 
-print("Функция выведет аликвотную последовательность для введённых чисел: ") 
-A=int(input()) 
-alikvotposl(A, A) 
- 
-print("Всё!")
+number = len("ЦветковАндрейСергеевич") * (len(relatives[0])+len(relatives[1])+len(relatives[2])+len(relatives[3]))%4
+print("Задание №11, вариант: ",number)
+
+def alikvotnayaposledovatelnost(t,firstt):
+    newt=0
+    if t==firstt:
+        print(t)
+    if t==1:
+        print(0)
+        return
+    else:
+        for i in range(1,t//2+1):
+            if t%i==0:
+                newt+=i
+        print(newt)
+        return alikvotnayaposledovatelnost(newt,firstt)
+    
+B=int(input("Функция выведет аликвотную последовательность для введённых чисел: "))
+alikvotnayaposledovatelnost(B,B)
  
  
  
