@@ -26,15 +26,9 @@ print('Ответ на 1 вопрос: ',a)
 # 2 Уникальное имя, если больше такого не встречается в списке
 k=0
 for i in names:
-    for y in names:
-        if i==y:
-            k+=1
-    if k<=1:
+    if i not in names2:
         names2.append(i)
-        k=0
-        continue
     else:
-        k=0
         continue
 print('Ответ на 2 вопрос: Уникальные имена членов моей семьи: ',names2)
 names2=[]
@@ -100,3 +94,20 @@ print('Ответ на 9 вопрос: Измененный список:',names
 DateNameDiff={}
 DateNameDiff=sorted(DateName.items(),key=lambda x: x[1])
 IskSp={}
+for i in range(len(DateNameDiff)-1):
+    IskSp[DateNameDiff[i]]=i+1
+print(IskSp)
+
+# 11 сделать генератор аликвотной последовательности
+var=(len(me[0])*len(names))%4
+print('Номер варианта:'+str(var))
+
+print('Напишите 3 первых числа последовательности трибоначчи, поочередно')
+n=int(input())
+k=int(input())
+z=int(input())
+number=[n,k,z]
+for i in range (0,10):
+    l=number[len(number)-1]+number[len(number)-2]+number[len(number)-3]
+    print(l)
+    number.append(l)
