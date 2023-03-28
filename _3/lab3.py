@@ -34,7 +34,7 @@ def add_new_possible_ways(coord, maze=read_maze()[0],
 
 
 def choose_way(possible_ways):
-    return possible_ways[0]
+    return possible_ways[-1]
 
 
 possible_ways = []
