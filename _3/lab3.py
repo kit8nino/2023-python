@@ -11,8 +11,8 @@ def read_maze(file_name='test_maze.txt'):
             for i in range(width)], width, height
 
 
-def is_exit(coord):
-    return coord[0] > 18
+def is_exit(coord, exit_coord):
+    return coord[0] == exit_coord[0] and coord[1] == exit_coord[1]
 
 
 def add_new_possible_ways(coord, maze=read_maze()[0],
@@ -37,11 +37,19 @@ def choose_way(possible_ways):
     return possible_ways[-1]
 
 
+def init_values(max_x, max_y):
+    x = int(input(f"Avatar coord, x < {max_x}: "))
+    y = int(input(f"Avatar coord, y < {max_y}: "))
+    x_e = int(input(f"Exit coord, x < {max_x}: "))
+    y_e = int(input(f"Exit coord, y < {max_y}: "))
+    return (x, y), (x_e, y_e)
+
+
 possible_ways = []
 maze, width, height = read_maze()
-# всегда координаты аватара (текущего узла)
-coord = (0, 1)
-while not is_exit(coord):
+# coord - всегда координаты аватара (текущего узла)
+coord, exit_coord = init_values(width, height)
+while not is_exit(coord, exit_coord):
     maze[coord[0] * width + coord[1]] = visited
     for el in add_new_possible_ways(coord, maze, width, height):
         possible_ways.append(el)

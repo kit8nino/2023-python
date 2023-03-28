@@ -2,22 +2,26 @@
 
 ## Imports
 import random
-import time
-from colorama import init
-from colorama import Fore, Back, Style
+# from colorama import init
+# from colorama import Fore, Back, Style
 
 ## Functions
 def printMaze(maze):
+    """
 	for i in range(0, height):
 		for j in range(0, width):
-			if (maze[i][j] == 'u'):
-				print(Fore.WHITE + str(maze[i][j]), end=" ")
+            if (maze[i][j] == 'u'):
+                pass
+				# print(Fore.WHITE + str(maze[i][j]), end=" ")
 			elif (maze[i][j] == 'c'):
-				print(Fore.GREEN + str(maze[i][j]), end=" ")
+				# print(Fore.GREEN + str(maze[i][j]), end=" ")
+                pass
 			else:
-				print(Fore.RED + str(maze[i][j]), end=" ")
+				# print(Fore.RED + str(maze[i][j]), end=" ")
+                pass
 
-		print('\n')
+        """
+    print('\n')
 
 # Find number of surrounding cells
 def surroundingCells(rand_wall):
@@ -44,7 +48,7 @@ width = 480
 maze = []
 
 # Initialize colorama
-init()
+# init()
 
 # Denote all cells as unvisited
 for i in range(0, height):
