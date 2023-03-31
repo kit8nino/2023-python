@@ -68,7 +68,8 @@ print("№5", binkiwa)
  
 sortrel=relatives 
 sortrel.sort(reverse=True)
-print("№6", sortrel) 
+print("№6", sortrel)
+print(relatives)
 
 tday=datetime.date.today()
 bday=datetime.date(int(inf[5]), int(inf[4]), int(inf[3]))  
@@ -99,6 +100,11 @@ while (True):
         break
     print("Некорректный ввод.Введите индекс заново:")
 print(sortrel)
+print(relatives)
+linked_list = {}
+for i in range(len(relatives)):
+        linked_list[relatives[i]] = relatives[(i+1)%len(relatives)]
+print("#10", linked_list)
 variant=(len("НазароваЮлияВалерьевна"))*(len(relatives[0])+len(relatives[1])+len(relatives[2])+len(relatives[3])+len(relatives[4]))%4
 print("№11 Мой вариант", variant)
 print("Числа трибоначи. Функция выводит первые N чисел Трибоначчи.")
@@ -132,7 +138,7 @@ A=int(input("Введите число, функция выведет аликв
 alikvot(A, A)
 
 def silvestr(n):
-    pred=1s
+    pred=1
     new=2
     for i in range(1, n+1):
         print(new)
@@ -142,6 +148,8 @@ def silvestr(n):
 print("Функция выводит первые M чисел последовательности Сильвестра")
 M=int(input("Введите М:"))
 silvestr(M)
+
+
 
 
 print("The end.")
