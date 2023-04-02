@@ -38,32 +38,41 @@
 #                 t.end_fill()
 # turtle.done()
 
-def available_paths(coordsX,coordsY):
+def available_paths(coordsXY, maze):
+    LenMazeX = len(maze[0])
+    LenMazeY = len(maze)
+    coordsX = coordsXY[0]
+    coordsY = coordsXY[1]
     av_path_list = []
-    if maze[coordsX - 1,coordsY] == "#":#Север
-        av_path_list.append(coordsX - 1,coordsY)
-    if maze[coordsX, coordsY + 1] == "#":  # Восток
-        av_path_list.append(coordsX, coordsY + 1)
-    if maze[coordsX + 1, coordsY] == "#":#Юг
-        av_path_list.append(coordsX + 1, coordsY)
 
-    if maze[coordsX, coordsY - 1] == "#":#Запад
-        av_path_list.append(coordsX, coordsY - 1)
-    # TODO: Сделать чтобы не выходила за пределы массива, мб трайкечем, или пограничные координаты ввести
+    if maze[coordsX - 1][coordsY] == "#" and coordsX - 1 <= 0: #Север
+        coord_for_append = [coordsX - 1,coordsY]
+        av_path_list.append(coord_for_append)
+    if maze[coordsX][coordsY + 1] == "#" and coordsY + 1 <= LenMazeY:  #Восток
+        coord_for_append = [coordsX, coordsY + 1]
+        av_path_list.append(coord_for_append)
+    if maze[coordsX + 1][coordsY] == "#" and coordsX + 1 <= LenMazeX: #Юг
+        coord_for_append = [coordsX + 1, coordsY]
+        av_path_list.append(coord_for_append)
+    if maze[coordsX][coordsY - 1] == "#" and LenMazeY - 1 <= 0: #Запад
+        coord_for_append = [coordsX, coordsY - 1]
+        av_path_list.append(coord_for_append)
     return av_path_list
 
 # a*
 def a_star(maze, start, end):
-    #TODO: Сложно че-то разобраться надо
-   pass
+    pass
+
 
 
 with open('Maze.txt', 'r') as f:
     maze = [list(line.strip()) for line in f.readlines()]
-# for i in range(len(maze)):
-#     print(*maze[i])
 
-start = (1, 1)
-end = (18, 8)
-print(available_paths(1,1))
-path = a_star(maze, start, end)
+for i in range(len(maze)):
+     print(*maze[i])
+
+start = [1, 1]
+end = [18, 8]
+print(available_paths(start, maze))
+
+
