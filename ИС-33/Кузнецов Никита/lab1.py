@@ -80,16 +80,21 @@ def linked_list():
     return linked_list
 
 def aliquot_sequence(n):
-        result = [n]
-        while n > 1:
-            divisors = [i for i in range(1, n) if n % i == 0]
-            s = sum(divisors)
-            result.append(s)
-            n = s
-        return result
+    yield n
+    while True:
+        divisors = [i for i in range(1, n) if n % i == 0]
+        next_num = sum(divisors)
+        if next_num == n:
+            break
+        yield next_num
+        n = next_num
 
 number1 = (data[1] + data[2]**2 + data[3]) % 21 + 1
-number2 = len("КузнецовНикитаИгоревич") * (len(relatives[0])+len(relatives[1])+len(relatives[2])+len(relatives[3])+len(relatives[4])) % 4
+
+len_family_names=0
+for i in range (len(relatives)):
+    len_family_names+=len(relatives[i])
+number2 = len("КузнецовНикитаИгоревич") * len_family_names % 4
 
 print("№1", avarage())
 print("№2", unique_names())
@@ -98,12 +103,15 @@ print("№4", unique_letters())
 print("№5", binar())
 print("№6", sort_relatives())
 print("№7", time())
+print("Стоп слово - 'Stop'")
 print("№8", FIFO())
-print("№9.1", "Номер, получаемый из нашей даты рождения: ", number1)
+print("№9.1", "Номер, получаемый из моей даты рождения для вики: ", number1)
+print("Введите индекс, под которым нужно поменять имя")
 print("№9.2", replacement())
 print("#10", linked_list())
-print("№11.1", "Полученный номер моего варианта: ", number2)
+print("№11", "Полученный номер моего варианта: ", number2)
 print("Введите число для аликвотной последовательности: ")
 num=int(input())
-print("#11.2",aliquot_sequence(num))
+for i in aliquot_sequence(num):
+    print(i)
 
