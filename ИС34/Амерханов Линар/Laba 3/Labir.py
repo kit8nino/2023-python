@@ -50,22 +50,21 @@ def available_paths(coordsXY, maze):
     coordsY = coordsXY[1]
     av_path_list = []
 
-    if maze[coordsX - 1][coordsY] == "#" and coordsX - 1 >= 0: #Север
-        coord_for_append = [coordsX - 1, coordsY,]
+    if (coordsX - 1) >= 0 and maze[coordsX - 1][coordsY] == "#": #Север
+        coord_for_append = [coordsX - 1, coordsY]
         av_path_list.append(coord_for_append)
 
-    if maze[coordsX][coordsY + 1] == "#" and coordsY + 1 <= LenMazeY:  #Восток
+    if (coordsY + 1) < LenMazeY and maze[coordsX][coordsY + 1] == "#":  #Восток
         coord_for_append = [coordsX, coordsY + 1]
         av_path_list.append(coord_for_append)
 
-    if maze[coordsX + 1][coordsY] == "#" and coordsX + 1 <= LenMazeX: #Юг
+    if (coordsX + 1) < LenMazeX and maze[coordsX + 1][coordsY] == "#": #Юг
         coord_for_append = [coordsX + 1, coordsY]
         av_path_list.append(coord_for_append)
 
-    if maze[coordsX][coordsY - 1] == "#" and coordsY - 1 >= 0: #Запад
+    if (coordsY - 1) >= 0 and maze[coordsX][coordsY - 1] == "#": #Запад
         coord_for_append = [coordsX, coordsY - 1]
         av_path_list.append(coord_for_append)
-
     return av_path_list
 
 # a*
@@ -78,16 +77,16 @@ def a_star(maze, start, end):
 with open('Maze.txt', 'r') as f:
     maze = [list(line.strip()) for line in f.readlines()]
 
+
+start = [2, 18]
+end = [18, 0]
+
+maze[start[0]][start[1]] = "O"
 for i in range(len(maze)):
      print(*maze[i])
 
 
+print(available_paths(start,maze))
 
-
-
-start = [0, 0]
-end = [18, 0]
-print(available_paths(start, maze))
-print(manhattan(start,end))
 
 
