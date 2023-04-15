@@ -1,92 +1,84 @@
-# import turtle
-#
-# screen = turtle.Screen()
-# screen.setup(600, 600)
-# t = turtle.Turtle()
-#
-# # Размер клетки и чернота
-# cell_size = 25
-# t.hideturtle()
-# screen.bgcolor("black")
-#
-# # Открытие файла с лабиринтом
-# with open("MazeTest.txt", "r") as maze_file:
-#     # Чтение строк из файла
-#     maze_rows = maze_file.readlines()
-#
-#
-#     # Проход по строкам
-#     for i, row in enumerate(maze_rows):
-#         # Проход по символам
-#         for j, char in enumerate(row.strip()):
-#             # Вычисление координат
-#             x = -screen.window_width() / 2 + cell_size * j
-#             y = screen.window_height() / 2 - cell_size * i
-#
-#             # Черепаха живи
-#             t.penup()
-#             t.goto(x, y)
-#             t.pendown()
-#
-#             # Проходы в лаб
-#             if char == "#":
-#                 t.color("white")
-#                 t.begin_fill()
-#                 for razv in range(4):
-#                     t.forward(cell_size)
-#                     t.right(90)
-#                 t.end_fill()
-# turtle.done()
-from math import sqrt
-
-def manhattan(start, end):
-    return sum(abs(val1 - val2) for val1, val2 in zip(start, end))
-
-
+import tkinter as tk
+def mark_path(maze, path):
+    for coords in path:
+        x, y = coords
+        maze[x][y] = "X"
+    return maze
 def available_paths(coordsXY, maze):
     LenMazeY = len(maze[0])
     LenMazeX = len(maze)
     coordsX = coordsXY[0]
     coordsY = coordsXY[1]
-    av_path_list = []
+    possibleWays = []
 
-    if (coordsX - 1) >= 0 and maze[coordsX - 1][coordsY] == "#": #Север
-        coord_for_append = [coordsX - 1, coordsY]
-        av_path_list.append(coord_for_append)
+    if (coordsX - 1) >= 0 and maze[coordsX - 1][coordsY] == " ": #Север
+        coord_for_append = (coordsX - 1, coordsY)
+        possibleWays.append(coord_for_append)
 
-    if (coordsY + 1) < LenMazeY and maze[coordsX][coordsY + 1] == "#":  #Восток
-        coord_for_append = [coordsX, coordsY + 1]
-        av_path_list.append(coord_for_append)
+    if (coordsY + 1) < LenMazeY and maze[coordsX][coordsY + 1] == " ":  #Восток
+        coord_for_append = (coordsX, coordsY + 1)
+        possibleWays.append(coord_for_append)
 
-    if (coordsX + 1) < LenMazeX and maze[coordsX + 1][coordsY] == "#": #Юг
-        coord_for_append = [coordsX + 1, coordsY]
-        av_path_list.append(coord_for_append)
+    if (coordsX + 1) < LenMazeX and maze[coordsX + 1][coordsY] == " ": #Юг
+        coord_for_append = (coordsX + 1, coordsY)
+        possibleWays.append(coord_for_append)
 
-    if (coordsY - 1) >= 0 and maze[coordsX][coordsY - 1] == "#": #Запад
-        coord_for_append = [coordsX, coordsY - 1]
-        av_path_list.append(coord_for_append)
-    return av_path_list
-
-# a*
-def a_star(maze, start, end):
-    OpenList = [start]
+    if (coordsY - 1) >= 0 and maze[coordsX][coordsY - 1] == " ": #Запад
+        coord_for_append = (coordsX, coordsY - 1)
+        possibleWays.append(coord_for_append)
+    return possibleWays
 
 
+def a_star(maze,start,end):
+    openList = [start]
+    closedList = []
+    cameFrom = {}
+    gScore = {start: 0}
+    fScore = {start: heuristic(start, end)} # Текущая оценка расстояния от стартовой точки до целевой
+    while openList:
+        current = min(openList, key=lambda x: fScore[x])
+        if current == end:
+            path = [end]
+            while current in cameFrom:
+                current = cameFrom[current]
+                path.append(current)
+            return path[::-1]
+        openList.remove(current)
+        closedList.append(current)
 
+        for neighbor in available_paths(current, maze):
+            if neighbor in closedList:
+                continue
+            tentative_gScore = gScore[current] + 1
+            if neighbor not in openList:
+                openList.append(neighbor)
+            elif tentative_gScore >= gScore[neighbor]:
+                continue
+            cameFrom[neighbor] = current
+            gScore[neighbor] = tentative_gScore
+            fScore[neighbor] = gScore[neighbor] + heuristic(neighbor, end)
+    return None
+
+def heuristic(current, end):
+    return abs(current[0] - end[0]) + abs(current[1] - end[1])
 
 with open('Maze.txt', 'r') as f:
     maze = [list(line.strip()) for line in f.readlines()]
 
-
-start = [2, 18]
-end = [18, 0]
-
-maze[start[0]][start[1]] = "O"
-for i in range(len(maze)):
-     print(*maze[i])
+start = (0, 1)
+end = (19, 18)
 
 
-print(available_paths(start,maze))
+path = a_star(maze, start, end)
 
+with open('maze-for-me-done.txt', 'w') as f:
+    for row in maze:
+        f.write("".join(row) + "\n")
 
-
+if path is not None:
+    maze = mark_path(maze, path)
+    with open('maze-for-me-done.txt', 'w') as f:
+        for row in maze:
+            f.write("".join(row) + "\n")
+else:
+    print("Пути для выхода нет.")
