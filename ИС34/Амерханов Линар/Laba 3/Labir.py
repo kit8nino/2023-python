@@ -1,9 +1,4 @@
-import tkinter as tk
-def mark_path(maze, path):
-    for coords in path:
-        x, y = coords
-        maze[x][y] = "X"
-    return maze
+
 def available_paths(coordsXY, maze):
     LenMazeY = len(maze[0])
     LenMazeX = len(maze)
@@ -37,7 +32,7 @@ def a_star(maze,start,end):
     fScore = {start: heuristic(start, end)} # Текущая оценка расстояния от стартовой точки до целевой
     while openList:
         current = min(openList, key=lambda x: fScore[x])
-        if current == end:
+        if end[0]-3 <= current[0] <= end[0]+3 and end[1]-3 <= current[1] <= end[1]+3:
             path = [end]
             while current in cameFrom:
                 current = cameFrom[current]
@@ -62,23 +57,31 @@ def a_star(maze,start,end):
 def heuristic(current, end):
     return abs(current[0] - end[0]) + abs(current[1] - end[1])
 
-with open('Maze.txt', 'r') as f:
+with open('maze-for-u.txt', 'r') as f:
     maze = [list(line.strip()) for line in f.readlines()]
 
 start = (0, 1)
-end = (19, 18)
+end = (599, 799)
+for i in range(len(maze)):
+    for j in range(len(maze[i])):
+        if maze[i][j] == '*':
+            key = (i, j)
+            break
 
+pathToKey = a_star(maze, start, key)
+pathToExit = a_star(maze, key, end)
 
-path = a_star(maze, start, end)
+#от точки-ключа до выхода  "."
+for coords in pathToKey:
+    x, y = coords
+    maze[x][y] = "."
 
+#от точки-ключа до выхода  ","
+for coords in pathToExit:
+    x, y = coords
+    maze[x][y] = ","
+
+# Записываем измененный лабиринт в файл
 with open('maze-for-me-done.txt', 'w') as f:
-    for row in maze:
-        f.write("".join(row) + "\n")
-
-if path is not None:
-    maze = mark_path(maze, path)
-    with open('maze-for-me-done.txt', 'w') as f:
-        for row in maze:
-            f.write("".join(row) + "\n")
-else:
-    print("Пути для выхода нет.")
+    for line in maze:
+        f.write("".join(line) + "\n")
