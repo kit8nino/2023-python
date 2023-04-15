@@ -1,4 +1,3 @@
-
 def available_paths(coordsXY, maze):
     LenMazeY = len(maze[0])
     LenMazeX = len(maze)
@@ -24,35 +23,40 @@ def available_paths(coordsXY, maze):
     return possibleWays
 
 
-def a_star(maze,start,end):
-    openList = [start]
-    closedList = []
-    cameFrom = {}
-    gScore = {start: 0}
-    fScore = {start: heuristic(start, end)} # Текущая оценка расстояния от стартовой точки до целевой
-    while openList:
-        current = min(openList, key=lambda x: fScore[x])
-        if end[0]-3 <= current[0] <= end[0]+3 and end[1]-3 <= current[1] <= end[1]+3:
+def a_star(maze, start, end):
+    open_list = [start]
+    closed_list = []
+    came_from = {}
+    g_score = {start: 0}
+    f_score = {start: heuristic(start, end)}
+
+    while open_list:
+        current = min(open_list, key=lambda x: f_score[x])
+        if current == end:
             path = [end]
-            while current in cameFrom:
-                current = cameFrom[current]
+            while current in came_from:
+                current = came_from[current]
                 path.append(current)
-            return path[::-1]
-        openList.remove(current)
-        closedList.append(current)
+            path.reverse()
+            return path
+
+        open_list.remove(current)
+        closed_list.append(current)
 
         for neighbor in available_paths(current, maze):
-            if neighbor in closedList:
+            if neighbor in closed_list:
                 continue
-            tentative_gScore = gScore[current] + 1
-            if neighbor not in openList:
-                openList.append(neighbor)
-            elif tentative_gScore >= gScore[neighbor]:
-                continue
-            cameFrom[neighbor] = current
-            gScore[neighbor] = tentative_gScore
-            fScore[neighbor] = gScore[neighbor] + heuristic(neighbor, end)
+            tentative_g_score = g_score[current] + 1
+            if neighbor not in open_list or tentative_g_score < g_score[neighbor]:
+                came_from[neighbor] = current
+                g_score[neighbor] = tentative_g_score
+                f_score[neighbor] = tentative_g_score + heuristic(neighbor, end)
+                if neighbor not in open_list:
+                    open_list.append(neighbor)
+
+    # Если A* не находит путь, функция возвращает None
     return None
+
 
 def heuristic(current, end):
     return abs(current[0] - end[0]) + abs(current[1] - end[1])
@@ -60,13 +64,25 @@ def heuristic(current, end):
 with open('maze-for-u.txt', 'r') as f:
     maze = [list(line.strip()) for line in f.readlines()]
 
-start = (0, 1)
-end = (599, 799)
+
+for Y in range(len(maze[0])):
+    if maze[0][Y] == " ":
+        start = (0, Y)
+        break
+
+for Y in range(len(maze[0])):
+    if maze[len(maze) - 1][Y] == " ":
+        end = (len(maze) - 1, Y)
+        break
+
+
 for i in range(len(maze)):
-    for j in range(len(maze[i])):
-        if maze[i][j] == '*':
+    for j in range(len(maze[0])):
+        if maze[i][j] == "*":
             key = (i, j)
+            maze[i][j] = " "
             break
+
 
 pathToKey = a_star(maze, start, key)
 pathToExit = a_star(maze, key, end)
@@ -80,6 +96,7 @@ for coords in pathToKey:
 for coords in pathToExit:
     x, y = coords
     maze[x][y] = ","
+
 
 # Записываем измененный лабиринт в файл
 with open('maze-for-me-done.txt', 'w') as f:
