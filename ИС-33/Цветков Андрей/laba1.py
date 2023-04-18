@@ -116,6 +116,8 @@ def alikvotnayaposledovatelnost(t,firstt):
     
 B=int(input("Функция выведет аликвотную последовательность для введённых чисел: "))
 alikvotnayaposledovatelnost(B,B)
+
+print("Все!")
  
  
  
