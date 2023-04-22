@@ -25,7 +25,6 @@ write_file("points.txt",\
         for a in [random.uniform(-r, r)]])
 
 # Отрывок из книги не менее 10000 слов, разбитый в список по словам
-
 from KORAN import koran
 import re
 #некие проблемс с чтением файлов, поэтому так
