@@ -115,6 +115,7 @@ def shaker_sort(array):
 #shaker_sort(point)
 #print(point)
 
+
 #сортировка выбором
 def bubble(array):
     for i in range(len(array)):
