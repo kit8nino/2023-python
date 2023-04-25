@@ -19,7 +19,7 @@ list1=[x for x in range(1000000)]
 
 #Импорт значений списка из 99999 случайных вещественных чисел в диапазоне [-1, 1]
 list2=[]
-with open("2_2.csv","r") as file2:
+with open("2_2.csv", "r") as file2:
     for line in file2:
         list2.append([float(x.replace(",",".")) for x in line.split()])
 
@@ -35,7 +35,7 @@ while True:
 
 #Импорт значений списка из слов отрывка книги
 text=[]
-with open("2_4.txt","r") as data:
+with open("2_4.txt",encoding="utf-8",mode="r") as data:
     for line in data:
         line = re.sub(r'[^ А-я]', '', line)
         for i in line.split():
