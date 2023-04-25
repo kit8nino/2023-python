@@ -76,46 +76,34 @@ def quicksort(numbers_1):
 
 
 # 6.Tree sort, сортировка деревом
-class Tree:
-    def __init__(self, value):
-        self.left = None
-        self.right = None
-        self.value = value
-
-    def insert(self, value):
-        if value.real < self.value.real:
-            if self.left is None:
-                self.left = Tree(value)
-            else:
-                self.left.insert(value)
-        else:
-            if self.right is None:
-                self.right = Tree(value)
-            else:
-                self.right.insert(value)
+def insert_node(root, value):
+    if root is None:
+        return {'value': value, 'left': None, 'right': None}
+    if value.real < root['value'].real:
+        root['left'] = insert_node(root['left'], value)
+    else:
+        root['right'] = insert_node(root['right'], value)
+    return root
 
 
-def tree_sort(numbers_2):
-    if len(numbers_2) == 0:
-        return numbers_2
-
-    root = Tree(numbers_2[0])
-    for i in range(1, len(numbers_2)):
-        root.insert(numbers_2[i])
-    sorted_lst = []
-
-    def in_order_traversal(node):
-        if node is not None:
-            in_order_traversal(node.left)
-            sorted_lst.append(node.value)
-            in_order_traversal(node.right)
-
-    in_order_traversal(root)
-
-    return sorted_lst
+def traverse_tree(root, sorted_list):
+    if root is None:
+        return
+    traverse_tree(root['left'], sorted_list)
+    sorted_list.append(root['value'])
+    traverse_tree(root['right'], sorted_list)
 
 
-sorted_lst = tree_sort(numbers_2)
+def binary_tree_sort(numbers_2):
+    root = None  # звено
+    for value in numbers_2:  # проходится по каждому элементу
+        root = insert_node(root, value)
+    sorted_list = []
+    traverse_tree(root, sorted_list)
+    return sorted_list
+
+
+sorted_arr = binary_tree_sort(numbers_2)
 
 
 # 2.Bubble sort, сортировка пузырьком;
@@ -131,5 +119,5 @@ bubble_sort(words)
 
 print("Отсортированный массив по LSD:", sorted_numbers)
 print("Отсортированный массив по Quicksort:", quicksort(numbers_1))
-print("Отсортированный массив по tree sort:", sorted_lst)
+print("Отсортированный массив по tree sort:", sorted_arr)
 print("Отсортированный массив по bubble sort:", ' '.join(words))
