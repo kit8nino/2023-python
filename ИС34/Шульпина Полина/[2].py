@@ -61,11 +61,11 @@ def quicksort(nums):
        return quicksort(s_nums) + e_nums + quicksort(m_nums)
 
 #1-й список: гномья сортировка
-numbers=[random.randint(0,999999) for i in range(99)]
+numbers=[random.randint(0,999999) for i in range(999999)]
 print(gnomeSort(numbers,len(numbers)))
 
 #2-й список: сорировка слиянием
-random_number=[round(random.uniform(-1, 1), 2) for x in range(99)]
+random_number=[round(random.uniform(-1, 1), 2) for x in range(999999)]
 print(mergeSort(random_number))
 
 #точки комплексной плоскости: быстрая сортировка
