@@ -75,7 +75,7 @@ def get_height(node):
 
 # Поворот
 """
-       ничто[возможно]              ничто[возможно]
+           A God                        The God
             |                              |
       node(new_root)      Правый     new_root(node)
         /         \     -------->      /      \ 
@@ -111,6 +111,9 @@ def iterative_traversal(root):
     stack = []
     result = []
     current = root
+    # Доведем до последней черты, вернемся назад, посмотрим в другую строну
+    # Если там будет смерть - примем её как конец
+    # Либо возвращаться уже некуда - безысходность - смерть
     while current or stack:
         while current:
             stack.append(current)

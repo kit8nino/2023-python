@@ -29,7 +29,6 @@ from KORAN import koran
 import re
 #некие проблемс с чтением файлов, поэтому так
 words = re.findall(r'\w+', koran)
-words = [word.lower() for word in words if not any(char.isdigit() for char in word)]
 with open('words.py', 'w', encoding='utf-8') as f:
     f.write("words = '''\n")
     for word in words:

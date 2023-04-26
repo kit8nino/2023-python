@@ -19,6 +19,7 @@ def merge(arr, direction,key=lambda x: x):
         # зачем? Это не описать словами...
         left = merge(arr[:mid], direction, key=key)
         right = merge(arr[mid:], direction, key=key)
+        # крутые и сортированные перцы теперь вместе
         return left + right
 
 from generation import read_file
