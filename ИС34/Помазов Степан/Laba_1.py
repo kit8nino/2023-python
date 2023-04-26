@@ -10,7 +10,7 @@ def Silvestr_sequence(n):
         a = ans
         ans = (ans + 1) % N
         i = i + 1
-aboutme = ("Помазов Степан Павлович", "10","9   ", "2004")
+aboutme = ("Помазов Степан Павлович", 10,9,2004)
 attestat = {
     'Математика' : 5,
     'Русский язык' : 5,
@@ -55,21 +55,12 @@ for item in keys:
 for i in range(len(keys1)-1):
     for j in keys1[i]:
         if j in unique_letters_in_keys:
-            unique_letters_in_keys.remove(j)
             continue
         elif j == ' ':
             continue
         else:
             unique_letters_in_keys.append(j)
-unique_relatives_names = []
-for i in range(len(mod_relatives)):
-    if mod_relatives[i] in unique_relatives_names:
-        unique_relatives_names.remove(mod_relatives[i])
-        continue
-    elif mod_relatives[i] == ' ':
-        continue
-    else:
-        unique_relatives_names.append(mod_relatives[i])
+unique_relatives_names = set(mod_relatives) #неповторяющиеся имена
 kivy_bin_name = ''.join(format(ord(x), '08b') for x in kivy_name)
 
 now = datetime.datetime.now()
@@ -99,17 +90,18 @@ print('8) FIFO - очередь, введенная с клавиатуры (о�
 fifo_queue = []
 command = "stop"
 number = (10 + 9 ** 2 + 2004) % 21 + 1
+predmety = [elem for elem in attestat]
 while True:
     s = input()
     if s == command:
         for i in range(len(fifo_queue)):
-            print(fifo_queue.pop(),end=" ")
+            print(predmety[i])
         break
     fifo_queue.append(s)
 print('\n9) Введите индекс имени родственника, чтобы заменить на имя ацтекского правителя (от 0 до 15): ')
 i1 = int(input())
 zamena(i1,sortrelatives)
-print('10) (Не понял, в задании там еще и по годам рождения упорядочить, а в исходных данных такого требования не было...)')
+print('10) ')
 slov = {}
 for i in range(len(relatives)-1):
     slov[relatives[i]] = relatives[i+1]
