@@ -57,15 +57,12 @@ def find_path_a_star(maze):
 def main():
     filename = "maze-for-u.txt"
     maze = read_maze(filename)
-    path1 = find_path(maze)
-    for place in path1:
+    path = find_path(maze)
+    for place in path:
         maze[place[0]][place[1]] = "."
-    result1 = ""
+    result = ""
     for line in maze:
-        result1 += "".join(line) + "\n"
+        result += "".join(line) + "\n"
     with open("maze-for-me-done.txt", "w") as f:
-        f.write(result1)
-    path2 = find_path_a_star(maze)
-    path22 = path2[1]
-
+        f.write(result)
 main()
