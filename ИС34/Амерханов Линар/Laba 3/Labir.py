@@ -54,8 +54,39 @@ def a_star(maze, start, end):
                 if neighbor not in open_list:
                     open_list.append(neighbor)
 
-    # Если A* не находит путь, функция возвращает None
-    return None
+    # Если A* не находит путь, функция возвращает попытку построить путь
+    return open_list
+def dijkstra(maze, start, end):
+    open_list = [start]
+    closed_list = []
+    came_from = {}
+    g_score = {start: 0}
+
+    while open_list:
+        current = min(open_list, key=lambda x: g_score[x])
+        if current == end:
+            path = [end]
+            while current in came_from:
+                current = came_from[current]
+                path.append(current)
+            path.reverse()
+            return path
+
+        open_list.remove(current)
+        closed_list.append(current)
+
+        for neighbor in available_paths(current, maze):
+            if neighbor in closed_list:
+                continue
+            tentative_g_score = g_score[current] + 1
+            if neighbor not in open_list or tentative_g_score < g_score[neighbor]:
+                came_from[neighbor] = current
+                g_score[neighbor] = tentative_g_score
+                if neighbor not in open_list:
+                    open_list.append(neighbor)
+
+    # Если не находит путь, функция возвращает попытку построить путь
+    return open_list
 
 
 def heuristic(current, end):
@@ -84,18 +115,21 @@ for i in range(len(maze)):
             break
 
 
-pathToKey = a_star(maze, start, key)
+pathToKey = dijkstra(maze, start, key)
 pathToExit = a_star(maze, key, end)
 
-#от точки-ключа до выхода  "."
+#от старта до ключа  "."
 for coords in pathToKey:
     x, y = coords
     maze[x][y] = "."
 
-#от точки-ключа до выхода  ","
+#от ключа до выхода  ","
 for coords in pathToExit:
     x, y = coords
-    maze[x][y] = ","
+    if maze[x][y] == ".":
+        maze[x][y] = ";"
+    else:
+        maze[x][y] = ","
 
 
 # Записываем измененный лабиринт в файл
