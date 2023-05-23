@@ -42,12 +42,9 @@ class Turtle(turtle.Turtle):
             # Сортировка очереди по эвристической стоимости, чтобы исследовать ближайшие клетки к целевой точке
             queue = deque(sorted(queue, key=lambda x: self.heuristic(x[0])))
 
-        return None  # Путь не найден
+        return None  
 
     def get_neighbors(self, coord):
-        # Метод для получения соседних клеток
-        # Здесь нужно указать, как получить соседние клетки от текущей координаты
-        # Возвращаемые соседние клетки должны быть в формате (x, y)
         x, y = coord
         neighbors = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
         return neighbors
