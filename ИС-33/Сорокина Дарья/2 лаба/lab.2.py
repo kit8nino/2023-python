@@ -13,10 +13,10 @@ for i in range (42000):
     l = math.sqrt(x**2 + y**2)
     if l <= r:
         tri.append(complex(x, y))
-        
+
 
 chetire=[]
-f = open('2.txt')
+f = open('2.txt', 'r')
 for line in f.readlines():
     for word in line.split():
         chetire.append(word)
@@ -47,10 +47,10 @@ print(odin1)
 print("Вторая сортировка, Быстрая сортировка")
 
 def quick_sort(dva2):
-    
+
     if len(dva2) <= 1:
         return dva2
-    
+
     elem = dva2[0]
     left = list(filter( lambda x: x<elem, dva2))
     center = [i for i in dva2 if i == elem]
@@ -80,7 +80,7 @@ def merge_two_list(a, b):
     if j < len(b):
         c += b[j:]
     return c
-    
+
 
 def merge_sort(tri3):
     if len(tri3) <= 1:
@@ -108,4 +108,4 @@ def heap_sort(words):
 sorted_words = heap_sort(chetire)
 print(sorted_words)
 
-                
+
