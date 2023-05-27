@@ -9,7 +9,6 @@ class Mob(turtle.Turtle):
         self.penup()
         self.color("red")
 
-
     def exit(self):
         if self.avatar.position() == self.position():
             return False

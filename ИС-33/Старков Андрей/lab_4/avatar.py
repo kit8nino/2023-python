@@ -11,7 +11,6 @@ class Avatar(turtle.Turtle):
         self.color("blue")
         self.path = []
 
-
     def exit(self):
         if self.target == self.position():
             return False

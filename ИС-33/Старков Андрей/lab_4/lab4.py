@@ -18,3 +18,4 @@ while avatar.exit() and mob.exit():
     mob.run()
 print("Выполнено! Кликните по окну с объектами, чтобы завершить!")
 window.exitonclick()
+
