@@ -1,14 +1,22 @@
-class Avatar():
+import turtle
+
+
+class Avatar(turtle.Turtle):
     name = 'Noname'
     max_x, max_y = 100, 100
     __secret = 'looks like a girlfriend'
     _step_count = 0
 
     def __init__(self, name='Noname', x=0, y=0, target=(10, 10), speed=5):
+        super().__init__()
         self.x, self.y = x, y
         self.x0, self.y0 = x, y
         self.name = name
         self.target = target
+        self.shape(name='arrow')
+        self.penup()
+        self.coord = list((x, y))
+        self.goto(self.coord)
         self.speed = speed
         print(f'Avatar {self.name} created at ({self.x}, {self.y})')
         print('Secret:', self.__secret)
