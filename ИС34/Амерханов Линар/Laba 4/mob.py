@@ -22,12 +22,15 @@ class Mob(turtle.Turtle):
         self.maze = maze
         self.path = None
         self.avatar = None
+        self._difficult = 0
+        self.moves = 0
 
     def set_avatar(self, avatar):
         self.avatar = avatar
 
     def move(self):
-        if self.path:
+        self.moves += 1
+        if self.path and self.moves > self._difficult:
             next_cell = self.path.pop(0)
             self._y_log = next_cell[1]
             self._x_log = next_cell[0]
@@ -77,7 +80,8 @@ class Mob(turtle.Turtle):
                     f_score[neighbor] = tentative_g_score + self.heuristic(neighbor, end)
                     if neighbor not in open_list:
                         open_list.append(neighbor)
-
+    def set_difficult(self,dific):
+        self._difficult = dific
     def heuristic(self, current, end):
         return abs(current[0] - end[0]) + abs(current[1] - end[1])
 
@@ -102,5 +106,9 @@ class Mob(turtle.Turtle):
         self.calculate_path()
         self.move()
 
+    def get_self_moves(self):
+        return self.moves
+    def get_diff(self):
+        return self._difficult
     def __str__(self):
         return f"Mob: {self.name} | Position: ({self.xcor()}, {self.ycor()})"

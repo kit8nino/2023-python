@@ -1,5 +1,8 @@
 import turtle
 turtle.register_shape("Lable.gif")
+turtle.register_shape("GmOv.gif")
+turtle.register_shape("Win.gif")
+turtle.register_shape("ChumBucket.gif")
 class Scene(turtle.Turtle):
     def __init__(self):
         super().__init__()
@@ -8,6 +11,23 @@ class Scene(turtle.Turtle):
         self.shapesize(3, 3)
         self.penup()
 
+class GameOver(turtle.Turtle):
+    def __init__(self):
+        super().__init__()
+        self.shape("GmOv.gif")
+        self.setheading(270)
+        self.shapesize(3, 3)
+        self.penup()
+class Congratulation(turtle.Turtle):
+    def __init__(self):
+        super().__init__()
+        self.shape("Win.gif")
+        self.setheading(270)
+        self.shapesize(3, 3)
+        self.penup()
+
+
+
 
 
 class MazeDrawer:
@@ -15,15 +35,42 @@ class MazeDrawer:
         self.filename = filename
         self.maze_data = []
 
+
     def read_maze(self):
         with open(self.filename, "r") as file:
             self.maze_data = file.readlines()
+
+    def find_last_coordinate(self):
+        last_coordinate = None
+        for i in range(len(self.maze_data) - 1, -1, -1):
+            for j in range(len(self.maze_data[i]) - 1, -1, -1):
+                if self.maze_data[i][j] == " ":
+                    last_coordinate = (i, j)
+                    return last_coordinate
+        return last_coordinate
+
+    def win(self):
+        turtle.speed(0)
+        turtle.hideturtle()
+        turtle.penup()
+        turtle.delay(0)
+        turtle.shape("ChumBucket.gif")
+
+        win_point = self.find_last_coordinate()
+        x = -480 + 60 * win_point[1] - 60 + 30
+        y = 390 - 60 * win_point[0] + 60 - 30
+
+        turtle.goto(x, y)
+        turtle.showturtle()
+
+
 
     def draw_maze(self):
         turtle.speed(0)
         turtle.hideturtle()
         turtle.penup()
         turtle.delay(0)
+        turtle.color("#e4ac24")
 
         x = -480 - 60
         y = 390 + 60
@@ -46,6 +93,7 @@ class MazeDrawer:
     def run(self):
         self.read_maze()
         self.draw_maze()
+        self.win()
 
 
 

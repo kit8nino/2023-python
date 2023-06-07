@@ -239,6 +239,10 @@ for i in range(width-1, 0, -1):
 
 # Print final maze
 #printMaze(maze)
+maze[1][1] = "c"
+for x in range(len(maze[0])):
+	maze[0][x] = "w"
+	maze[height - 1][x] = "w"
 
 f = open('maze.txt', 'w')
 for i in range(len(maze)):
@@ -250,6 +254,3 @@ for i in range(len(maze)):
 	f.write('\n')
 f.close()
 
-# Вывод лабиринта в консоль
-for row in maze:
-    print(''.join(row))
