@@ -41,7 +41,7 @@ class MazeDrawer:
                     turtle.penup()
                 x += 60
             y -= 60
-            x = -480 -62
+            x = -480 - 60
 
     def run(self):
         self.read_maze()

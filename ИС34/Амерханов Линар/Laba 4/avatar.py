@@ -4,9 +4,12 @@ import turtle
 turtle.register_shape("Plank.gif")
 class Avatar(turtle.Turtle):
     __secret = 'looks like a girlfriend'
-
     def __init__(self, name, x=-450, y=360):
         super().__init__()
+        self.__x_log = 1
+        self.__y_log = 1
+        self.__make_step = 0
+        self.mazeFNP = []
         self.hideturtle()
         self.shape("Plank.gif")
         self.setheading(270)
@@ -17,24 +20,42 @@ class Avatar(turtle.Turtle):
         self.goto(x, y)
         self.setheading(270)
         self.speed(1)
+        self.caught = False
 
+    def set_maze(self, maze_data):
+        self.maze_FNP = maze_data
 
     def move(self, direction):
         if direction == "up":
-
-            self.setheading(90)
+            if self.__x_log > 0 and self.maze_FNP[self.__x_log - 1][self.__y_log] != "#":
+                self.__x_log -= 1
+                self.setheading(90)
+                self.forward(60)
         elif direction == "down":
-            self.setheading(270)
+            if self.__x_log < len(self.maze_FNP) - 1 and self.maze_FNP[self.__x_log + 1][self.__y_log] != "#":
+                self.__x_log += 1
+                self.setheading(270)
+                self.forward(60)
         elif direction == "left":
-            self.setheading(180)
+            if self.__y_log > 0 and self.maze_FNP[self.__x_log][self.__y_log - 1] != "#":
+                self.__y_log -= 1
+                self.setheading(180)
+                self.forward(60)
         elif direction == "right":
-            self.setheading(0)
+            if self.__y_log < len(self.maze_FNP[0]) - 1 and self.maze_FNP[self.__x_log][self.__y_log + 1] != "#":
+                self.__y_log += 1
+                self.setheading(0)
+                self.forward(60)
 
-        self.forward(60)
+        self.__make_step += 1
 
-    def __str__(self):
-        return f"Avatar: {self.name} | Position: ({self.x}, {self.y})"
 
     def get_coord(self):
         return (self.xcor(), self.ycor())
+    def get_coord_log(self):
+        return (self.__x_log,self.__y_log)
+    def get_make_step(self):
+        return self.__make_step
+    def __str__(self):
+        return f"Mob: {self.name} | Position: ({self.xcor()}, {self.ycor()}"
 
