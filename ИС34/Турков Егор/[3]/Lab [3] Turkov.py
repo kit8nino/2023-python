@@ -1,4 +1,4 @@
-from collections import deque
+
 #1. проверка доступности пути и шаги
 def possible_ways(coordsXY, maze):
     LenMazeY = len(maze[0])
